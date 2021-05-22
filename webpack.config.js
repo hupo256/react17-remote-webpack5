@@ -2,6 +2,8 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { ModuleFederationPlugin } = require("webpack").container;
 const path = require("path");
 
+let isProduction = false;
+
 module.exports = {
   devtool: false,
   entry: "./src/index",
@@ -23,6 +25,27 @@ module.exports = {
           presets: ["@babel/preset-react"],
         },
       },
+      {
+        test: /\.(c|sa|sc)ss$/,
+        use: [
+          isProduction
+            ? {
+                loader: MiniCssExtractPlugin.loader,
+                options: { publicPath: "../" },
+              }
+            : "style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              modules: true,
+              importLoaders: 1,
+              sourceMap: isProduction,
+            },
+          },
+          "postcss-loader",
+          "sass-loader",
+        ],
+      },
     ],
   },
   plugins: [
@@ -36,11 +59,11 @@ module.exports = {
         app1: "app1@http://localhost:3001/remoteEntry.js",
         // app2: "app2@http://localhost:3002/remoteEntry.js",
       },
-      // shared: {
-      //   react: { singleton: true },
-      //   "react-dom": { singleton: true },
-      // },
-      shared: ["react", "react-dom", "react-router-dom"],
+      // shared: ["react", "react-dom", "react-router-dom"],
+      shared: {
+        react: { singleton: true, eager: true },
+        "react-dom": { singleton: true },
+      },
     }),
     new HtmlWebpackPlugin({
       template: "./public/index.html",
