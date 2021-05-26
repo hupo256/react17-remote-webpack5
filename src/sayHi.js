@@ -4,13 +4,13 @@ export default function SayHi(props) {
   const [name, setname] = useState('jack')
 
   useEffect(() => {
-    setname('lucy tome')
+    setname('lucy green')
   }, [])
 
   return (
     <>
       <p>this is my father‘s world</p>
-      <p>hi~ my name is {name}</p>
+      <p>hi~ 123 my name is {name}</p>
     </>
   )
 }
