@@ -66,7 +66,7 @@ module.exports = {
       //     shareKey: "react",
       //     shareScope: "default",
       //     singleton: true,
-      //     eager: true,
+      //     eager: false,
       //     // don't use shared version when version isn't valid. Singleton or modules without fallback will throw, otherwise fallback is used
       //     // strictVersion: true,
       //     version: require("react").version,
@@ -74,13 +74,9 @@ module.exports = {
       //   },
       // },
       // shared: {
-      //   react: { singleton: true, eager: true },
-      //   // "react-dom": { singleton: true, eager: true },
+      //   react: { singleton: true },
+      //   // "react-dom": { singleton: true },
       //   // "react-router-dom": { singleton: true, eager: true },
-      // },
-      // shared: {
-      //   react: { eager: true },
-      //   // "react-dom": { eager: true },
       // },
     }),
     new HtmlWebpackPlugin({

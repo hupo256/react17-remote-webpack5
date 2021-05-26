@@ -4,7 +4,7 @@ export default function SayHi(props) {
   const [name, setname] = useState('jack')
 
   useEffect(() => {
-    setname('lucy green')
+    setname('lucy lite')
   }, [])
 
   return (
