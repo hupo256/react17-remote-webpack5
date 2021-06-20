@@ -52,14 +52,15 @@ module.exports = {
     new ModuleFederationPlugin({
       name: "fdTest",
       filename: "remoteEntry.js",
+      // library: { type: "var", name: "fdTest" },
       exposes: {
         "./sayHi": "./src/sayHi",
       },
       remotes: {
-        app1: "app1@http://localhost:3001/remoteEntry.js",
+        // app1: "app1@http://localhost:3001/remoteEntry.js",
         sample: "sample@http://localhost:8081/remoteEntry.js",
       },
-      shared: ["react", "react-dom", "react-router-dom"],
+      shared: ["react"],
       // shared: {
       //   reactRexport: {
       //     import: "react",
